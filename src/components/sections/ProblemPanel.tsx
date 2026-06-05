@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/i18n/context";
+import { Reveal } from "@/components/Reveal";
 
 const problems = [
   { leadIn: "problems.item1", strong: "problems.item1strong" },
@@ -22,34 +23,40 @@ export function ProblemPanel() {
   return (
     <section className="bg-obsidian min-h-[calc(100dvh-3.5rem)] flex items-center py-20">
       <div className="max-w-[1500px] mx-auto w-full px-6">
-        <span className="text-[10px] font-medium text-white/30 tracking-[0.08em] uppercase">
-          {t("problems.label")}
-        </span>
-        <h2 className="text-[32px] font-bold text-snow leading-[1.28] mt-2 mb-10">
-          {t("problems.title")}
-        </h2>
+        <Reveal>
+          <span className="text-[10px] font-medium text-white/30 tracking-[0.08em] uppercase">
+            {t("problems.label")}
+          </span>
+        </Reveal>
+        <Reveal y={24} delay={0.1}>
+          <h2 className="text-[32px] font-bold text-snow leading-[1.28] mt-2 mb-10">
+            {t("problems.title")}
+          </h2>
+        </Reveal>
         <div className="flex flex-col gap-5">
           {problems.map((item, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-graphite flex items-center justify-center flex-shrink-0">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.5)"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d={icons[i]} />
-                </svg>
+            <Reveal key={i} y={20} delay={0.15 + i * 0.08} once>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-graphite flex items-center justify-center flex-shrink-0">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.5)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d={icons[i]} />
+                  </svg>
+                </div>
+                <p className="text-[18px] leading-[1.45]">
+                  <span className="font-light text-ash">{t(item.leadIn)}</span>
+                  <span className="font-semibold text-snow">{t(item.strong)}</span>
+                </p>
               </div>
-              <p className="text-[18px] leading-[1.45]">
-                <span className="font-light text-ash">{t(item.leadIn)}</span>
-                <span className="font-semibold text-snow">{t(item.strong)}</span>
-              </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

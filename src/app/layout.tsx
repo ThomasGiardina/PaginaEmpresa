@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import { LocaleProvider } from "@/i18n/context";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { SmoothScroller } from "@/components/SmoothScroller";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en" className={`${dmSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <LocaleProvider>
+          <SmoothScroller />
           <Nav />
           <main className="flex-1">{children}</main>
           <Footer />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "@/i18n/context";
-import { StatBlock } from "@/components/ui/StatBlock";
+import { AnimatedStat } from "@/components/ui/AnimatedStat";
 
 export function StatsSection() {
   const { t } = useLocale();
@@ -18,7 +18,7 @@ export function StatsSection() {
       <div className="max-w-[1500px] mx-auto w-full px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
-            <StatBlock key={i} value={stat.value} label={stat.label} />
+            <AnimatedStat key={i} value={stat.value} label={stat.label} />
           ))}
         </div>
       </div>

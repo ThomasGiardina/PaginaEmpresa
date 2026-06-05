@@ -3,7 +3,7 @@
 import { useLocale } from "@/i18n/context";
 import { projects } from "@/data/projects";
 import { ProjectTile } from "@/components/ui/ProjectTile";
-import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/Reveal";
 
 export function PortfolioPreview() {
   const { t } = useLocale();
@@ -14,31 +14,39 @@ export function PortfolioPreview() {
       <div className="max-w-[1500px] mx-auto w-full px-6">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <span className="text-[10px] font-medium text-ash tracking-[0.08em] uppercase">
-              {t("projects.label")}
-            </span>
-            <h2 className="text-[32px] font-bold text-obsidian leading-[1.28] mt-1">
-              {t("projects.title")}
-            </h2>
+            <Reveal>
+              <span className="text-[10px] font-medium text-ash tracking-[0.08em] uppercase">
+                {t("projects.label")}
+              </span>
+            </Reveal>
+            <Reveal y={24} delay={0.1}>
+              <h2 className="text-[32px] font-bold text-obsidian leading-[1.28] mt-1">
+                {t("projects.title")}
+              </h2>
+            </Reveal>
           </div>
-          <a
-            href="/proyectos"
-            className="hidden md:inline-flex items-center text-[14px] font-medium text-graphite border border-graphite rounded-[100px] px-5 py-2 hover:bg-mist transition-colors"
-          >
-            {t("projects.viewAll")}
-          </a>
+          <Reveal y={20} delay={0.15}>
+            <a
+              href="/proyectos"
+              className="hidden md:inline-flex items-center text-[14px] font-medium text-graphite border border-graphite rounded-[100px] px-5 py-2 hover:bg-mist transition-colors"
+            >
+              {t("projects.viewAll")}
+            </a>
+          </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {featured.map((project, i) => (
-            <ProjectTile
-              key={project.id}
-              project={project}
-              height="220px"
-              decorative={i === 1}
-            />
-          ))}
-        </div>
+        <Reveal y={32} delay={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {featured.map((project, i) => (
+              <ProjectTile
+                key={project.id}
+                project={project}
+                height="220px"
+                decorative={i === 1}
+              />
+            ))}
+          </div>
+        </Reveal>
 
         <div className="flex justify-center mt-8 md:hidden">
           <a

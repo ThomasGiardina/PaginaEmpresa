@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "@/i18n/context";
 import { Button } from "@/components/ui/Button";
+import { getLenis } from "@/lib/smoothScroll";
 
 const links = [
   { key: "nav.services", href: "/#services" },
@@ -44,6 +45,13 @@ export function Nav() {
     };
 
     handleScroll();
+
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.on("scroll", handleScroll);
+      return () => lenis.off("scroll", handleScroll);
+    }
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
