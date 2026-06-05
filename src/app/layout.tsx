@@ -12,8 +12,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Paginita",
-  description: "Software development & automation",
+  title: "Paginita — Software Development & Automation",
+  description:
+    "We build software, automate processes, and connect your tools so you can focus on what matters.",
 };
 
 export default function RootLayout({
