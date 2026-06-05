@@ -60,14 +60,14 @@
 
   /* Animations */
   --animate-scroll-left: scroll-left 30s linear infinite;
+}
 
-  @keyframes scroll-left {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-16.666%);
   }
 }
 
