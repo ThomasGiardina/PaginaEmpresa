@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLocale } from "@/i18n/context";
+import Link from "next/link";
 import { projects, type Project } from "@/data/projects";
 import { ProjectTile } from "@/components/ui/ProjectTile";
 
@@ -81,12 +82,12 @@ export function PortfolioGrid() {
 
       <div className="bg-mist pb-20">
         <div className="max-w-[1500px] mx-auto w-full px-6 text-center">
-          <a
+          <Link
             href="/#contact"
             className="inline-flex items-center bg-obsidian text-snow rounded-[100px] px-6 py-3 text-[14px] font-medium hover:opacity-90 transition-colors"
           >
             {t("projects.cta")}
-          </a>
+          </Link>
         </div>
       </div>
     </section>

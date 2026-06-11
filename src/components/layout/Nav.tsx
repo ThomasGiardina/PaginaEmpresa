@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "@/i18n/context";
-import { Button } from "@/components/ui/Button";
 import { getLenis } from "@/lib/smoothScroll";
+import Link from "next/link";
 
 const links = [
   { key: "nav.services", href: "/#services" },
+  { key: "nav.projects", href: "/proyectos" },
   { key: "nav.about", href: "/#about" },
   { key: "nav.contact", href: "/#contact" },
-  { key: "nav.projects", href: "/proyectos" },
 ];
 
 export function Nav() {
@@ -18,6 +18,18 @@ export function Nav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScrollState = () => {
+      setScrolled(window.scrollY > 120);
+    };
+
+    window.addEventListener("scroll", handleScrollState, { passive: true });
+    handleScrollState();
+
+    return () => window.removeEventListener("scroll", handleScrollState);
+  }, []);
 
   useEffect(() => {
     if (pathname !== "/") return;
@@ -59,14 +71,28 @@ export function Nav() {
   const isLanding = pathname === "/";
 
   return (
-    <nav className="sticky top-0 z-50 bg-snow border-b border-[#e5e5e5] h-14 flex items-center">
+    <nav
+      className={`z-50 bg-snow border-b border-[#e5e5e5] h-14 flex items-center transition-all duration-300 ${
+        isLanding
+          ? `fixed top-0 left-0 right-0 w-full ${
+              scrolled
+                ? "translate-y-0 opacity-100 shadow-sm"
+                : "-translate-y-full opacity-0 pointer-events-none"
+            }`
+          : "sticky top-0 translate-y-0 opacity-100"
+      }`}
+    >
       <div className="max-w-[1500px] mx-auto w-full px-6 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-[28px] bg-obsidian flex-shrink-0" />
-          <span className="text-[15px] font-semibold text-obsidian">
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-lg bg-obsidian flex items-center justify-center flex-shrink-0 text-white">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 2.5L13.5 13.5M13.5 2.5L2.5 13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <span className="text-[15px] font-bold tracking-tight text-obsidian uppercase">
             Paginita
           </span>
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-6">
           {links.map((link) => {
@@ -82,7 +108,7 @@ export function Nav() {
             }
 
             return (
-              <a
+              <Link
                 key={link.key}
                 href={link.href}
                 className={
@@ -92,7 +118,7 @@ export function Nav() {
                 }
               >
                 {t(link.key)}
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -100,11 +126,11 @@ export function Nav() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setLocale(locale === "en" ? "es" : "en")}
-            className="text-[13px] font-medium text-graphite hover:text-obsidian transition-colors px-2"
+            className="text-[13px] font-medium text-graphite hover:text-obsidian transition-colors px-2 cursor-pointer"
           >
             {locale === "en" ? "ES" : "EN"}
           </button>
-          <a
+          <Link
             href="/#contact"
             className="hidden sm:inline-flex items-center justify-center bg-[#111] text-white rounded-full px-5 py-2.5 text-[14px] font-medium leading-none hover:opacity-90 transition-opacity gap-2"
           >
@@ -112,10 +138,10 @@ export function Nav() {
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
               <path d="M2.5 6h7M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </a>
+          </Link>
 
           <button
-            className="md:hidden flex flex-col gap-1 p-1"
+            className="md:hidden flex flex-col gap-1 p-1 cursor-pointer"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
           >
@@ -130,14 +156,14 @@ export function Nav() {
         <div className="absolute top-14 left-0 right-0 bg-snow border-b border-fog md:hidden">
           <div className="flex flex-col px-6 py-4 gap-3">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.key}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 className="text-[14px] font-medium text-ink hover:text-obsidian py-1.5"
               >
                 {t(link.key)}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
