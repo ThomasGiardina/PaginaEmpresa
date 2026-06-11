@@ -30,6 +30,9 @@ La empresa opera sobre un canvas blanco y casi-negro con máximo redondeo — ca
 | Snow | `#ffffff` | `--color-snow` | Superficies de card blancas, fondos de input, relleno de botón para variante outlined |
 | Ember | `#ff5a00` | `--color-ember` | Badges de tecnología clave (stack técnico) — el naranja vívido señala lenguajes, frameworks o herramientas destacadas. Uso exclusivo en badges de tech/stack. |
 | Orchid Flash | `#fe45e2` | `--color-orchid-flash` | Wash decorativo de card — uso único como fondo de card vívido para marcar una pieza especial del portfolio. |
+| Cream | `#f5f5f3` | `--color-cream` | Fondo general del Hero y secciones alternativas — neutro cálido más suave que Mist |
+| Warm Gray | `#eeecea` | `--color-warm-gray` | Fondo del panel dashboard animado en la columna derecha del Hero |
+| Silver | `#e0e0e0` | `--color-silver` | Borde inferior del nav (0.5px) y bordes de dashboard cards |
 
 ---
 
@@ -42,7 +45,7 @@ Cada badge, botón, enlace de nav, encabezado y cuerpo de texto usa Cosmica. Su 
 - **Pesos:** 300, 400, 500, 600, 700
 - **Tamaños:** 10px, 12px, 13px, 14px, 15px, 16px, 18px, 20px, 32px, 40px, 56px, 64px
 - **Line height:** 1.0–1.8 (más ajustado en display ~1.0–1.12, más suelto en cuerpo ~1.45–1.68)
-- **Letter spacing:** normal en todos los tamaños
+- **Letter spacing:** normal en todos los tamaños. hero-heading (46px) es la única excepción con letter-spacing -0.02em.
 
 ### Escala tipográfica
 
@@ -57,6 +60,7 @@ Cada badge, botón, enlace de nav, encabezado y cuerpo de texto usa Cosmica. Su 
 | heading-lg | 40px | 1.25 | `--text-heading-lg` |
 | display-sm | 56px | 1.12 | `--text-display-sm` |
 | display | 64px | 1 | `--text-display` |
+| hero-heading | 46px | 1.15 | `--text-hero-heading` |
 
 ---
 
@@ -97,6 +101,7 @@ Cada badge, botón, enlace de nav, encabezado y cuerpo de texto usa Cosmica. Su 
 | badges | 12px |
 | inputs | 14px |
 | buttons | 36px (pill) o 14–16px (rect redondeado) |
+| dashboard-cards | 12px |
 
 ### Sombras
 
@@ -119,6 +124,16 @@ Cada badge, botón, enlace de nav, encabezado y cuerpo de texto usa Cosmica. Su 
 ---
 
 ## Componentes
+
+### Hero CTA Primary
+**Rol:** Botón de acción principal dentro del Hero
+
+Fondo #09090b, texto blanco, border-radius 999px, padding 12px 24px, flat (sin sombras ni rings). Cosmica 15px weight 500.
+
+### Hero CTA Secondary
+**Rol:** Acción secundaria dentro del Hero
+
+Sin fondo (transparente), text-decoration underline, color #111, Cosmica 14px weight 500.
 
 ### Botón Pill Primario
 **Rol:** CTA principal — Contactanos, Ver proyectos, Solicitar propuesta
@@ -167,12 +182,29 @@ Fondo transparente, texto #ffffff, borde 1px solid rgba(255,255,255,0.3–0.5), 
 
 Fondo #3f3f46, texto #fafafa, border-radius 12px, padding 4px 8px, Cosmica 12px peso 500.
 
+### Category Badge (Hero)
+**Rol:** Badge de categorías en el Hero
+
+Borde 0.5px solid #a1a1aa, border-radius 999px (pill), texto 11px uppercase, tracking-wider, color #52525b.
+
 ### Badge de Tecnología (Tech Stack Marker)
 **Rol:** Identificador de lenguaje, framework o herramienta en cards de proyecto y secciones de servicios
 
 Fondo #ff5a00, texto #ffffff, border-radius 12px, padding 4px 8px, Cosmica 12px peso 600. Su uso es exclusivo para etiquetas de tecnología — nunca reutilizar para estados genéricos de UI.
 
 **Ejemplos de uso:** React, Node.js, Python, n8n, Make, Supabase, Next.js, FastAPI.
+
+### Dashboard Demo Panel
+**Rol:** Panel animado tipo "product demo" en la columna derecha del Hero
+
+Fondo #eeecea, border-left 0.5px solid #ddd. Ocupa toda la altura del Hero.
+
+Contiene:
+- **Métricas con count-up:** Tarjetas blancas, border 0.5px #ddd, border-radius 12px, padding 12-16px. Aparecen con fade-in escalonado (staggered). El número cuenta hacia arriba al cargar y se resetea en loop infinito (~10s ciclo).
+- **Workflow animado:** Cajas conectadas con flechas (→) que se completan paso a paso con highlight y checkmark, en secuencia infinita.
+- **Play button:** Botón circular negro (w-12 h-12, bg #111, texto blanco) con ícono play ▶, centrado abajo. Texto "Ver cómo funciona" debajo en 11px #888.
+
+Solo CSS animations + JS count-up. Sin videos reales.
 
 ### Input de Email + Fila CTA
 **Rol:** Formulario de captura en el hero
@@ -210,9 +242,23 @@ Fondo #ececee, border-radius 28px, padding 24px. Contiene: nombre del cliente en
 ### 1. Hero
 **Objetivo:** Comunicar propuesta de valor en 5 segundos
 
-Layout 2 columnas: titular display grande a la izquierda (peso 700, 56–64px) con una palabra ciclante en tono más claro, y columna derecha compacta con subtexto, input de email/contacto y CTA. El subtexto debe comunicar *qué hace* la empresa en una oración concreta, no solo "hacemos software".
+Layout de 2 columnas sobre fondo Cream (#f5f5f3), border-radius 16px, overflow hidden, con margen horizontal respecto al nav.
 
-**Ejemplo de copy:** "Automatizamos [procesos] para que tu equipo haga [lo que importa]."
+**Nav (sobre el Hero):** Fondo blanco, border-bottom 0.5px #e0e0e0. Links existentes + CTA (bg #09090b, texto blanco, border-radius 999px).
+
+**Columna izquierda** (padding 48px):
+- Category Badge: borde 0.5px gris (#a1a1aa), border-radius 999px, texto 11px uppercase.
+- H1: font-size 46px, font-weight 700, letter-spacing -0.02em, color #111. Solo la palabra/verbo cíclante en color #aaa (mismo tamaño y peso).
+- Hero CTA Primary: fondo #111, texto blanco, border-radius 999px, flat (sin sombras).
+- Hero CTA Secondary: sin fondo, text-decoration underline.
+
+**Columna derecha** (Dashboard Demo Panel):
+- Fondo Warm Gray (#eeecea), border-left 0.5px #ddd.
+- Dashboard animado: tarjetas de métricas con fade-in escalonado, workflow paso a paso animado con checkmarks, count-up numbers en loop infinito.
+- Botón circular negro con play ▶ y texto "Ver cómo funciona" debajo.
+- Sin videos reales — solo CSS animations + JS.
+
+**Estilo general:** Flat, sin sombras ni gradientes. Fuente sans-serif del sistema. Limpio y minimalista.
 
 ### 2. Logo Strip — Empresas que confían
 Scroll horizontal de logos de clientes a full bleed. Si aún no hay clientes con logo público, mostrar los nombres en texto Cosmica 16px peso 500 #a1a1aa sobre fondo blanco en la misma estructura de strip continuo.
@@ -309,13 +355,15 @@ El sistema es dependiente de imágenes para la sección de portfolio pero domina
 
 ## Layout
 
-Max-width aproximadamente 1200px, centrado sobre el canvas (#f4f4f5). El hero es un split de 2 columnas: titular display grande a la izquierda (peso 700, 56–64px) con una palabra ciclante de acento en tono más claro, y columna derecha compacta con subtexto, input de contacto y CTA. Debajo del hero, un strip horizontal de logos de clientes a full bleed. Las secciones siguientes alternan: layouts de texto+card sobre canvas blanco, luego un panel oscuro full-width (#09090b) para copy de problemas, de vuelta a canvas claro para portfolio y stats. El grid de portfolio es una fila de scroll horizontal de tiles altos y redondeados. Las cards de features/servicios usan un grid de 2–3 columnas con cards de 36px-radius sobre canvas Mist. Los gaps verticales entre secciones son 80px; padding interno de card 24–28px. La navegación es una barra sticky de ~40px de altura con links de texto inline y un botón pill negro 'Contactanos' en el borde derecho.
+Max-width aproximadamente 1500px, centrado sobre el canvas (#f4f4f5). El hero es un contenedor con fondo Cream (#f5f5f3), border-radius 16px, overflow hidden, de 2 columnas. Columna izquierda (padding 48px): titular hero-heading 46px peso 700 con última línea en #aaa, Category Badge, Hero CTA Primary + Secondary. Columna derecha: Dashboard Demo Panel con fondo Warm Gray (#eeecea) y border-left 0.5px #ddd. Debajo del hero, un strip horizontal de logos de clientes a full bleed. Las secciones siguientes alternan: layouts de texto+card sobre canvas blanco, luego un panel oscuro full-width (#09090b) para copy de problemas, de vuelta a canvas claro para portfolio y stats. El grid de portfolio es una fila de scroll horizontal de tiles altos y redondeados. Las cards de features/servicios usan un grid de 2–3 columnas con cards de 36px-radius sobre canvas Mist. Los gaps verticales entre secciones son 80px; padding interno de card 24–28px. La navegación es una barra sticky de 56px de altura con links de texto inline, un botón pill negro 'Hablemos' en el borde derecho y border-bottom 0.5px #e0e0e0.
 
 ---
 
 ## Filosofía de Motion
 
 El sistema usa animación de forma expresiva pero intencionada. Tres loops de scroll nombrados (reverseloop, scroll-text, scroll-text-cta) impulsan el ticker de logos horizontal y los strips de scroll de portfolio a duración lenta de 8–50s lineal — el movimiento continuo implica una producción siempre activa y de alto volumen. Las micro-interacciones de UI (estados hover, expand de acordeón) usan transiciones de 0.2–0.35s ease solo en transform y opacity. El único easing expresivo (cubic-bezier 0.175, 0.885, 0.32, 1.275 — un spring suave con leve overshooting) está reservado para animaciones de entrada. Nunca animar color o background-color — solo transforms posicionales y opacidad.
+
+**Dashboard loop animations:** El Dashboard Demo Panel del Hero usa CSS keyframes con delays escalonados para fade-in de tarjetas, highlight secuencial de pasos de workflow y count-up de métricas con JS. El ciclo completo dura ~10s en loop infinito. Solo se animan transform y opacity.
 
 ---
 
@@ -348,6 +396,9 @@ El sistema usa animación de forma expresiva pero intencionada. Tres loops de sc
   --color-snow: #ffffff;
   --color-ember: #ff5a00;
   --color-orchid-flash: #fe45e2;
+  --color-cream: #f5f5f3;
+  --color-warm-gray: #eeecea;
+  --color-silver: #e0e0e0;
 
   /* Typography */
   --font-cosmica: 'Cosmica', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -371,6 +422,9 @@ El sistema usa animación de forma expresiva pero intencionada. Tres loops de sc
   --leading-display-sm: 1.12;
   --text-display: 64px;
   --leading-display: 1;
+  --text-hero-heading: 46px;
+  --leading-hero-heading: 1.15;
+  --letter-spacing-hero-heading: -0.02em;
 
   /* Typography — Weights */
   --font-weight-light: 300;
@@ -463,6 +517,9 @@ El sistema usa animación de forma expresiva pero intencionada. Tres loops de sc
   --color-snow: #ffffff;
   --color-ember: #ff5a00;
   --color-orchid-flash: #fe45e2;
+  --color-cream: #f5f5f3;
+  --color-warm-gray: #eeecea;
+  --color-silver: #e0e0e0;
 
   /* Typography */
   --font-cosmica: 'Cosmica', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -486,6 +543,8 @@ El sistema usa animación de forma expresiva pero intencionada. Tres loops de sc
   --leading-display-sm: 1.12;
   --text-display: 64px;
   --leading-display: 1;
+  --text-hero-heading: 46px;
+  --leading-hero-heading: 1.15;
 
   /* Spacing */
   --spacing-4: 4px;
@@ -534,7 +593,7 @@ El sistema usa animación de forma expresiva pero intencionada. Tres loops de sc
 
 ## Ejemplos de Prompts por Componente
 
-1. **Sección Hero:** Fondo blanco o Mist (#f4f4f5). Columna izquierda: titular display a 56px Cosmica peso 700, color #09090b, letter-spacing normal, line-height 1.12. Una palabra del titular en #a1a1aa al mismo tamaño/peso para crear acento ciclante. Columna derecha: texto de cuerpo a 16px Cosmica peso 400, color #18181b; input de contacto (fondo #ffffff, borde transparente, radio 14px, padding 12px 16px, placeholder #a1a1aa) emparejado con botón pill (fondo #09090b, texto #ffffff, radio 36px, padding 12px 16px, Cosmica 14px peso 500).
+1. **Sección Hero:** Hero container con fondo Cream (#f5f5f3), border-radius 16px, overflow hidden. Nav arriba con fondo blanco y border-bottom 0.5px #e0e0e0; CTA nav en bg #09090b, texto blanco, border-radius 999px. Layout 2 columnas: izquierda con padding 48px, derecha con Dashboard Demo Panel (fondo #eeecea, border-left 0.5px #ddd). Columna izquierda: Category Badge (borde 0.5px #a1a1aa, border-radius 999px, 11px uppercase), H1 hero-heading 46px weight 700 tracking -0.02em color #111, última línea en #aaa. Botón primario flat (fondo #09090b, texto blanco, border-radius 999px, sin sombras). Botón secundario (transparente, underline). Columna derecha: dashboard animado con tarjetas blancas (border 0.5px #ddd, border-radius 12px), count-up numbers, workflow animado, botón circular negro con play y texto "Ver cómo funciona" debajo. Sin videos — solo CSS + JS animations en loop infinito.
 
 2. **Tile de Proyecto:** Contenedor 36px border-radius recortando screenshot full-bleed de app o dashboard. Overlay en esquina inferior izquierda: nombre del proyecto en Cosmica 20px peso 600 blanco; tech badges debajo (fondo transparente, texto blanco, borde rgba(255,255,255,0.3), radio 12px, padding 4px 8px, Cosmica 12px peso 500). Un tile por fila puede usar #fe45e2 como fondo sólido de card en lugar de imagen.
 

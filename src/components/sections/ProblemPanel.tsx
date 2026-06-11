@@ -2,63 +2,138 @@
 
 import { useLocale } from "@/i18n/context";
 import { Reveal } from "@/components/Reveal";
+import { iconMap } from "@/data/services";
 
-const problems = [
-  { leadIn: "problems.item1", strong: "problems.item1strong" },
-  { leadIn: "problems.item2", strong: "problems.item2strong" },
-  { leadIn: "problems.item3", strong: "problems.item3strong" },
-  { leadIn: "problems.item4", strong: "problems.item4strong" },
+const cards = [
+  {
+    icon: "clock",
+    titleKey: "problems.card1Title",
+    descKey: "problems.card1Desc",
+  },
+  {
+    icon: "puzzle",
+    titleKey: "problems.card2Title",
+    descKey: "problems.card2Desc",
+  },
+  {
+    icon: "code",
+    titleKey: "problems.card3Title",
+    descKey: "problems.card3Desc",
+  },
+  {
+    icon: "chart",
+    titleKey: "problems.card4Title",
+    descKey: "problems.card4Desc",
+  },
 ];
 
-const icons = [
-  "M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0zm-9 3.75h.008v.008H12v-.008z",
-  'M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z',
-  "M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
-  "M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z",
-];
+const extraPaths: Record<string, string> = {
+  clock:
+    "M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
+  lightbulb:
+    "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
+};
+
+function getIconPath(icon: string): string {
+  return iconMap[icon] || extraPaths[icon] || iconMap.code;
+}
 
 export function ProblemPanel() {
   const { t } = useLocale();
 
   return (
-    <section className="bg-obsidian min-h-[calc(100dvh-3.5rem)] flex items-center py-20">
+    <section id="problems" className="bg-[#0f0f0f] min-h-[calc(100dvh-3.5rem)] flex items-center py-20 scroll-mt-14">
       <div className="max-w-[1500px] mx-auto w-full px-6">
-        <Reveal>
-          <span className="text-[10px] font-medium text-white/30 tracking-[0.08em] uppercase">
-            {t("problems.label")}
-          </span>
-        </Reveal>
-        <Reveal y={24} delay={0.1}>
-          <h2 className="text-[32px] font-bold text-snow leading-[1.28] mt-2 mb-10">
-            {t("problems.title")}
-          </h2>
-        </Reveal>
-        <div className="flex flex-col gap-5">
-          {problems.map((item, i) => (
-            <Reveal key={i} y={20} delay={0.15 + i * 0.08} once>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-graphite flex items-center justify-center flex-shrink-0">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.5)"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d={icons[i]} />
-                  </svg>
-                </div>
-                <p className="text-[18px] leading-[1.45]">
-                  <span className="font-light text-ash">{t(item.leadIn)}</span>
-                  <span className="font-semibold text-snow">{t(item.strong)}</span>
+        <div className="flex flex-col lg:flex-row gap-12">
+            <div className="lg:w-[40%]">
+              <Reveal>
+                <span className="inline-block text-[11px] font-medium text-[#aaa] tracking-[0.08em] uppercase bg-[#2a2a2a] rounded-full px-[14px] py-[4px]">
+                  {t("problems.badge")}
+                </span>
+              </Reveal>
+              <Reveal y={24} delay={0.1}>
+                <h2 className="text-[38px] font-bold text-white leading-[1.2] mt-4">
+                  {t("problems.titleWhite")}
+                  <br />
+                  <span className="text-[#888]">{t("problems.titleGray")}</span>
+                </h2>
+              </Reveal>
+              <div className="w-10 border-t border-[#444] my-6" />
+              <Reveal y={24} delay={0.15}>
+                <p className="text-[15px] text-[#aaa] leading-[1.7] max-w-[340px]">
+                  {t("problems.subtitle")}
                 </p>
+              </Reveal>
+              <Reveal y={24} delay={0.2}>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 mt-6 border border-[#555] text-white rounded-full px-6 py-3 text-[14px] hover:bg-white/5 transition-colors"
+                >
+                  {t("problems.cta")} →
+                </a>
+              </Reveal>
+            </div>
+            <div className="lg:w-[60%]">
+              <Reveal y={32} delay={0.2}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {cards.map((card, i) => (
+                    <div
+                      key={i}
+                      className="bg-[#1a1a1a] rounded-[16px] border border-[#2a2a2a] p-7"
+                    >
+                      <div className="w-[52px] h-[52px] rounded-full bg-[#2a2a2a] flex items-center justify-center">
+                        <svg
+                          width="22"
+                          height="22"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="rgba(255,255,255,0.6)"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d={getIconPath(card.icon)} />
+                        </svg>
+                      </div>
+                      <h3 className="text-[17px] font-bold text-white mt-4 leading-[1.3]">
+                        {t(card.titleKey)}
+                      </h3>
+                      <div className="border-t border-[#2a2a2a] my-4" />
+                      <p className="text-[14px] text-[#888] leading-[1.6]">
+                        {t(card.descKey)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+          </div>
+          <Reveal y={24} delay={0.25}>
+            <div className="bg-[#1a1a1a] rounded-[12px] p-5 pl-6 flex items-center gap-4 mt-8">
+              <div className="w-10 h-10 rounded-full bg-[#2a2a2a] flex items-center justify-center flex-shrink-0">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.6)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d={extraPaths.lightbulb} />
+                </svg>
               </div>
-            </Reveal>
-          ))}
-        </div>
+              <div>
+                <span className="font-semibold text-[15px] text-white">
+                  {t("problems.banner.title")}
+                </span>
+                <span className="text-[15px] text-[#888] ml-1">
+                  {t("problems.banner.description")}
+                </span>
+              </div>
+            </div>
+          </Reveal>
       </div>
     </section>
   );

@@ -59,7 +59,7 @@ export function Nav() {
   const isLanding = pathname === "/";
 
   return (
-    <nav className="sticky top-0 z-50 bg-snow border-b border-fog h-14 flex items-center">
+    <nav className="sticky top-0 z-50 bg-snow border-b border-[#e5e5e5] h-14 flex items-center">
       <div className="max-w-[1500px] mx-auto w-full px-6 flex items-center justify-between">
         <a href="/" className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-[28px] bg-obsidian flex-shrink-0" />
@@ -104,9 +104,15 @@ export function Nav() {
           >
             {locale === "en" ? "ES" : "EN"}
           </button>
-          <Button variant="primary" className="hidden sm:inline-flex">
+          <a
+            href="/#contact"
+            className="hidden sm:inline-flex items-center justify-center bg-[#111] text-white rounded-full px-5 py-2.5 text-[14px] font-medium leading-none hover:opacity-90 transition-opacity gap-2"
+          >
             {t("nav.talk")}
-          </Button>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
+              <path d="M2.5 6h7M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
 
           <button
             className="md:hidden flex flex-col gap-1 p-1"
