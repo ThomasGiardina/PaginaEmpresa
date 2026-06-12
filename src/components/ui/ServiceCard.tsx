@@ -1,44 +1,45 @@
 "use client";
 
-import { useLocale } from "@/i18n/context";
 import type { Service } from "@/data/services";
 import { iconMap } from "@/data/services";
+import { useLocale } from "@/i18n/context";
 
 interface ServiceCardProps {
   service: Service;
 }
 
 export function ServiceCard({ service }: ServiceCardProps) {
-  const name = service.title;
+  const { locale } = useLocale();
+  const name = locale === "es" ? service.titleEs : service.title;
+  const desc = locale === "es" ? service.descriptionEs : service.description;
 
   return (
-    <article className="border border-[#e5e5e5] rounded-[16px] p-7 bg-white flex flex-col">
-      <div className="w-32 h-32 rounded-full bg-[#f0f0f0] flex items-center justify-center flex-shrink-0">
+    <article className="border border-[#e5e5e5] rounded-[24px] p-8 bg-white flex flex-col h-full hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-shadow duration-300">
+      <div className="w-[52px] h-[52px] rounded-[14px] bg-zinc-50 border border-zinc-100 flex items-center justify-center flex-shrink-0">
         <svg
-          width="48"
-          height="48"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#444"
-          strokeWidth="2"
+          stroke="#111"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
           <path d={iconMap[service.icon] || iconMap.code} />
         </svg>
       </div>
-      <h3 className="text-[18px] font-bold text-obsidian mt-5">
+      <h3 className="text-[20px] font-bold text-obsidian mt-6 leading-tight">
         {name}
       </h3>
-      <p className="text-[14px] text-steel leading-[1.6] mt-2">
-        {service.description}
+      <p className="text-[15px] text-steel leading-[1.6] mt-3 flex-1">
+        {desc}
       </p>
-      <div className="border-t border-[#eee] my-5" />
-      <div className="flex flex-wrap gap-2 mt-auto">
+      <div className="flex flex-wrap gap-2 mt-6">
         {service.tags.map((tag) => (
           <span
             key={tag}
-            className="border border-[#ddd] rounded-full px-3 py-[3px] text-[12px] text-[#444] bg-white"
+            className="border border-[#e5e5e5] rounded-[100px] px-3 py-1 text-[12px] font-medium text-zinc-600 bg-white"
           >
             {tag}
           </span>

@@ -1,5 +1,4 @@
 import type { Project } from "@/data/projects";
-import { Badge } from "./Badge";
 
 interface ProjectTileProps {
   project: Project;
@@ -9,47 +8,42 @@ interface ProjectTileProps {
 
 export function ProjectTile({
   project,
-  height = "220px",
+  height = "auto",
   decorative = false,
 }: ProjectTileProps) {
-  if (decorative) {
-    return (
-      <div
-        className="rounded-[36px] overflow-hidden relative"
-        style={{ height }}
-      >
-        <div className="w-full h-full bg-orchid-flash" />
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-          <h3 className="text-[16px] font-semibold text-snow leading-tight">
-            {project.title}
-          </h3>
-        </div>
-      </div>
-    );
-  }
+  // Use a pink wash for the decorative card (e.g., Plataforma de Pagos in the mockup)
+  const bgClass = decorative ? "bg-orchid-flash/5 border-orchid-flash/20" : "bg-white border-[#e5e5e5]";
 
   return (
     <div
-      className="rounded-[36px] overflow-hidden relative group cursor-pointer"
-      style={{ height }}
+      className={`border rounded-[32px] p-3 flex flex-col group cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 ${bgClass}`}
+      style={height !== "auto" ? { minHeight: height } : undefined}
     >
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-full object-cover transition-transform duration-250 ease-out group-hover:scale-[1.02]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col gap-2">
-        <h3 className="text-[16px] font-semibold text-snow leading-tight">
-          {project.title}
-        </h3>
-        <div className="flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
-            <Badge key={tag} variant="overlay">
+      <div className="w-full aspect-[4/3] rounded-[24px] overflow-hidden bg-zinc-100 mb-5 relative">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        />
+      </div>
+      
+      <div className="px-3 pb-4 flex flex-col flex-1">
+        <div className="flex flex-wrap gap-2 mb-3">
+          {project.tags.slice(0, 3).map((tag) => (
+            <span
+              key={tag}
+              className="border border-[#e5e5e5] rounded-[100px] px-2.5 py-1 text-[11px] font-medium text-zinc-600 bg-white"
+            >
               {tag}
-            </Badge>
+            </span>
           ))}
         </div>
+        <h3 className="text-[18px] font-bold text-obsidian leading-tight mb-2">
+          {project.title}
+        </h3>
+        <p className="text-[14px] text-steel leading-[1.5] line-clamp-2">
+          {project.description}
+        </p>
       </div>
     </div>
   );

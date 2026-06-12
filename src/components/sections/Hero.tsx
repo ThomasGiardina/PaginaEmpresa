@@ -34,59 +34,8 @@ export function Hero() {
   }, [locale]);
 
   return (
-    <section className="w-full bg-white flex flex-col animate-[fadeIn_0.8s_ease-out]">
-      {/* Integrated Header Bar */}
-      <header className="w-full border-b border-[#e5e5e5] bg-white flex-shrink-0">
-        <div className="max-w-[1500px] mx-auto w-full h-14 px-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-obsidian flex items-center justify-center flex-shrink-0 text-white">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.5 2.5L13.5 13.5M13.5 2.5L2.5 13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-              </svg>
-            </div>
-            <span className="text-[15px] font-bold tracking-tight text-obsidian uppercase">
-              Paginita
-            </span>
-          </Link>
-
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#services" className="text-[14px] font-medium text-zinc-600 hover:text-obsidian transition-colors">
-              {t("nav.services")}
-            </a>
-            <a href="/proyectos" className="text-[14px] font-medium text-zinc-600 hover:text-obsidian transition-colors">
-              {t("nav.projects")}
-            </a>
-            <a href="#about" className="text-[14px] font-medium text-zinc-600 hover:text-obsidian transition-colors">
-              {t("nav.about")}
-            </a>
-            <a href="#contact" className="text-[14px] font-medium text-zinc-600 hover:text-obsidian transition-colors">
-              {t("nav.contact")}
-            </a>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setLocale(locale === "en" ? "es" : "en")}
-              className="text-[13px] font-medium text-zinc-500 hover:text-obsidian transition-colors px-2 cursor-pointer"
-            >
-              {locale === "en" ? "ES" : "EN"}
-            </button>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center bg-[#111] text-white rounded-full px-5 py-2.5 text-[14px] font-medium leading-none hover:opacity-90 transition-opacity gap-2"
-            >
-              {t("nav.talk")}
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
-                <path d="M2.5 6h7M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Content Grid */}
-      <div className="w-full bg-white">
-        <div className="max-w-[1500px] mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-[1fr_1.25fr] min-h-[calc(100dvh-3.5rem)] items-stretch">
+    <section className="w-full bg-white flex flex-col min-h-dvh animate-[fadeIn_0.8s_ease-out]">
+      <div className="max-w-[1500px] mx-auto w-full px-6 pt-14 grid grid-cols-1 lg:grid-cols-[1fr_1.25fr] flex-1 items-stretch">
           {/* Left Column */}
           <div className="flex flex-col justify-center py-10 lg:py-16 pr-0 lg:pr-8 gap-6 bg-white animate-[slideIn_0.6s_ease-out]">
             <span className="inline-flex self-start items-center px-3.5 py-1.5 rounded-full border border-zinc-200 bg-zinc-50 text-[11px] uppercase tracking-wider font-semibold text-zinc-500 leading-none">
@@ -141,7 +90,6 @@ export function Hero() {
             <DashboardDemo />
           </div>
         </div>
-      </div>
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }

@@ -6,14 +6,14 @@ import Link from "next/link";
 import { projects, type Project } from "@/data/projects";
 import { ProjectTile } from "@/components/ui/ProjectTile";
 
-type Filter = "all" | "desarrollo" | "automatizacion" | "integraciones" | "ia";
+type Filter = "all" | "desarrollo" | "mobile" | "automatizacion" | "integraciones";
 
 const filters: { key: Filter; labelKey: string }[] = [
   { key: "all", labelKey: "filter.all" },
   { key: "desarrollo", labelKey: "filter.desarrollo" },
+  { key: "mobile", labelKey: "filter.mobile" },
   { key: "automatizacion", labelKey: "filter.automatizacion" },
   { key: "integraciones", labelKey: "filter.integraciones" },
-  { key: "ia", labelKey: "filter.ia" },
 ];
 
 export function PortfolioGrid() {
@@ -23,7 +23,10 @@ export function PortfolioGrid() {
   const filtered: Project[] =
     activeFilter === "all"
       ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      : projects.filter((p) => {
+          if (activeFilter === "mobile") return p.tags.includes("React Native");
+          return p.category === activeFilter;
+        });
 
   return (
     <section>
@@ -48,7 +51,7 @@ export function PortfolioGrid() {
                 className={`px-4 py-1.5 rounded-[100px] text-[13px] font-medium leading-none transition-colors ${
                   activeFilter === f.key
                     ? "bg-obsidian text-snow border border-obsidian"
-                    : "bg-snow text-slate border border-pebble hover:bg-mist"
+                    : "bg-snow text-obsidian border border-[#e5e5e5] hover:bg-mist"
                 }`}
               >
                 {t(f.labelKey)}
@@ -58,36 +61,18 @@ export function PortfolioGrid() {
         </div>
       </div>
 
-      <div className="bg-mist pb-20">
+      <div className="bg-snow pb-24">
         <div className="max-w-[1500px] mx-auto w-full px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {filtered.map((project, i) => (
-              <a
-                key={project.id}
-                href={project.url ?? "#"}
-                target={project.url ? "_blank" : undefined}
-                rel={project.url ? "noopener noreferrer" : undefined}
-                className="block"
-              >
+              <Link href={`/proyectos/${project.slug}`} key={project.id} className="block">
                 <ProjectTile
                   project={project}
-                  height="260px"
-                  decorative={(i + 1) % 6 === 0}
+                  decorative={i === 3}
                 />
-              </a>
+              </Link>
             ))}
           </div>
-        </div>
-      </div>
-
-      <div className="bg-mist pb-20">
-        <div className="max-w-[1500px] mx-auto w-full px-6 text-center">
-          <Link
-            href="/#contact"
-            className="inline-flex items-center bg-obsidian text-snow rounded-[100px] px-6 py-3 text-[14px] font-medium hover:opacity-90 transition-colors"
-          >
-            {t("projects.cta")}
-          </Link>
         </div>
       </div>
     </section>

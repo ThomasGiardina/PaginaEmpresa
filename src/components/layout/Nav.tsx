@@ -18,19 +18,6 @@ export function Nav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScrollState = () => {
-      setScrolled(window.scrollY > 120);
-    };
-
-    window.addEventListener("scroll", handleScrollState, { passive: true });
-    handleScrollState();
-
-    return () => window.removeEventListener("scroll", handleScrollState);
-  }, []);
-
   useEffect(() => {
     if (pathname !== "/") return;
 
@@ -72,13 +59,9 @@ export function Nav() {
 
   return (
     <nav
-      className={`z-50 bg-snow border-b border-[#e5e5e5] h-14 flex items-center transition-all duration-300 ${
+      className={`z-50 bg-white/70 backdrop-blur-xl border-b border-[#e5e5e5]/50 h-14 flex items-center transition-all duration-300 shadow-sm ${
         isLanding
-          ? `fixed top-0 left-0 right-0 w-full ${
-              scrolled
-                ? "translate-y-0 opacity-100 shadow-sm"
-                : "-translate-y-full opacity-0 pointer-events-none"
-            }`
+          ? "fixed top-0 left-0 right-0 w-full translate-y-0 opacity-100"
           : "sticky top-0 translate-y-0 opacity-100"
       }`}
     >
