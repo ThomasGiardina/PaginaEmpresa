@@ -77,7 +77,7 @@ export function Nav() {
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-10">
           {links.map((link) => {
             const isProjects = link.href === "/proyectos";
             const isSection = link.href.startsWith("/#");
@@ -85,9 +85,9 @@ export function Nav() {
 
             let isActive = false;
             if (isProjects) {
-              isActive = pathname === "/proyectos";
+               isActive = pathname === "/proyectos";
             } else if (isSection && isLanding) {
-              isActive = activeSection === sectionId;
+               isActive = activeSection === sectionId;
             }
 
             return (
@@ -96,8 +96,8 @@ export function Nav() {
                 href={link.href}
                 className={
                   isActive
-                    ? "text-[16px] font-medium bg-snow/10 text-snow rounded-[100px] px-3 py-1"
-                    : "text-[16px] font-medium text-slate hover:text-snow transition-colors"
+                    ? "text-[14px] font-medium bg-snow/10 text-snow rounded-[100px] px-4 py-1.5 uppercase tracking-[0.1em]"
+                    : "text-[14px] font-medium text-slate hover:text-snow transition-colors uppercase tracking-[0.1em]"
                 }
               >
                 {t(link.key)}
@@ -113,15 +113,7 @@ export function Nav() {
           >
             {locale === "en" ? "ES" : "EN"}
           </button>
-          <Link
-            href="/#contact"
-            className="hidden sm:inline-flex items-center justify-center bg-indigo text-white rounded-full px-5 py-2.5 text-[16px] font-medium leading-none hover:opacity-90 transition-opacity gap-2"
-          >
-            {t("nav.talk")}
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
-              <path d="M2.5 6h7M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
+
 
           <button
             className="md:hidden flex flex-col gap-1 p-1 cursor-pointer"
@@ -143,7 +135,7 @@ export function Nav() {
                 key={link.key}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-[16px] font-medium text-slate hover:text-snow py-1.5"
+                className="text-[16px] font-medium text-slate hover:text-snow py-1.5 uppercase tracking-wide"
               >
                 {t(link.key)}
               </Link>
