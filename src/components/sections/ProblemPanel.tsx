@@ -30,17 +30,17 @@ export function ProblemPanel() {
   const { t } = useLocale();
 
   return (
-    <section id="problems" className="bg-[#09090b] min-h-dvh flex items-center py-24 border-y border-[#18181b] scroll-mt-14">
-      <div className="max-w-[1500px] mx-auto w-full px-6 flex flex-col items-center">
+    <section id="problems" className="bg-obsidian min-h-dvh flex items-center py-24 border-y border-ink scroll-mt-14">
+      <div className="max-w-[1500px] px-22 mx-auto w-full flex flex-col items-center">
         <Reveal>
-          <span className="inline-block text-[11px] font-medium text-[#aaa] tracking-[0.08em] uppercase bg-[#18181b] rounded-full px-[14px] py-[4px] mb-6">
+          <span className="inline-block text-[13px] font-medium text-ash tracking-[0.08em] uppercase bg-ink rounded-full px-[14px] py-[4px] mb-6">
             {t("problems.badge")}
           </span>
         </Reveal>
         <Reveal y={24} delay={0.1}>
-          <h2 className="text-[36px] md:text-[42px] font-bold text-white text-center leading-[1.2] max-w-[800px] mb-12">
+          <h2 className="text-[41px] md:text-[48px] font-bold text-white text-center leading-[1.2] max-w-[800px] mb-12">
             {t("problems.titleWhite")}{" "}
-            <span className="text-[#888]">{t("problems.titleGray")}</span>
+            <span className="text-slate">{t("problems.titleGray")}</span>
           </h2>
         </Reveal>
         
@@ -49,7 +49,7 @@ export function ProblemPanel() {
             {cards.map((card, i) => (
               <div
                 key={i}
-                className="bg-[#18181b] rounded-[24px] border border-[#27272a] p-8 flex flex-col h-full hover:bg-[#202024] transition-colors duration-300"
+                className="bg-ink rounded-[24px] border border-[#27272a] p-8 flex flex-col h-full hover:bg-[#202024] transition-colors duration-300"
               >
                 <div className="w-[48px] h-[48px] rounded-[14px] bg-[#27272a] flex items-center justify-center mb-6 flex-shrink-0">
                   <svg
@@ -65,10 +65,10 @@ export function ProblemPanel() {
                     <path d={card.icon} />
                   </svg>
                 </div>
-                <h3 className="text-[18px] font-bold text-white mb-3 leading-snug">
+                <h3 className="text-[21px] font-bold text-white mb-3 leading-snug">
                   {t(card.titleKey)}
                 </h3>
-                <p className="text-[15px] text-[#888] leading-[1.6] flex-1">
+                <p className="text-[17px] text-slate leading-[1.6] flex-1">
                   {t(card.descKey)}
                 </p>
               </div>

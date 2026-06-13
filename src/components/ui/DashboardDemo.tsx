@@ -26,63 +26,67 @@ export function DashboardDemo() {
   }, [isPlaying]);
 
   const orbitCardStyle =
-    "bg-white border border-[#e5e5e5] rounded-[12px] shadow-[0_4px_16px_rgba(0,0,0,0.03)] p-4 dashboard-card transition-all duration-500 hover:scale-105 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]";
+    "bg-ink border border-fog rounded-[12px] shadow-[0_4px_16px_rgba(0,0,0,0.03)] p-4 dashboard-card transition-all duration-500 hover:scale-105 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]";
 
   const centerCardStyle =
-    "bg-white border border-[#e5e5e5] rounded-[16px] shadow-[0_10px_30px_rgba(0,0,0,0.04)] overflow-hidden transition-transform duration-500 hover:scale-[1.02] absolute z-10 w-[380px] p-5 flex flex-col gap-4";
+    "bg-ink border border-fog rounded-[16px] shadow-[0_10px_30px_rgba(0,0,0,0.04)] overflow-hidden transition-transform duration-500 hover:scale-[1.02] absolute z-10 w-[280px] p-4 flex flex-col gap-4 left-1/2 -ml-[140px]";
 
   return (
-    <div className="relative w-full h-full min-h-[480px] bg-transparent flex items-center justify-center">
+    <div className="relative w-full h-full min-h-[360px] bg-transparent flex items-center justify-center">
       {/* Background: Concentric orbits */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <svg className="w-[120%] h-[120%] absolute animate-[spin_120s_linear_infinite]" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="40" stroke="#ececee" strokeWidth="0.4" strokeDasharray="1.5 2.5" fill="none" />
-          <circle cx="50" cy="50" r="30" stroke="#ececee" strokeWidth="0.4" strokeDasharray="1.5 2.5" fill="none" />
-          <circle cx="50" cy="50" r="20" stroke="#ececee" strokeWidth="0.4" strokeDasharray="1.5 2.5" fill="none" />
+          <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="0.4" strokeDasharray="1.5 2.5" fill="none" className="text-fog" />
+          <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="0.4" strokeDasharray="1.5 2.5" fill="none" className="text-fog" />
+          <circle cx="50" cy="50" r="20" stroke="currentColor" strokeWidth="0.4" strokeDasharray="1.5 2.5" fill="none" className="text-fog" />
         </svg>
       </div>
 
       {/* Orbit 1 — top-left: Automatización activa 24/7 */}
       <div className="orbit-wrapper-1">
         <div className="orbit-item-1">
-          <div className={`${orbitCardStyle} w-[180px]`}>
-            <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">
+          <div className={`${orbitCardStyle} w-[140px] p-3`}>
+            <div className="text-[12px] text-slate uppercase tracking-wider font-semibold">
               {locale === "en" ? "Active Automation" : "Automatización activa"}
             </div>
-            <div className="text-[26px] font-bold text-[#111] mt-0.5 tracking-[-0.02em] leading-none flex items-baseline gap-1.5">
-              24/7
+            <div className="text-[23px] font-bold text-snow mt-0.5 tracking-[-0.02em] leading-none flex items-baseline gap-1.5">
+               24/7
             </div>
-            <svg className="mt-3 w-full h-8" viewBox="0 0 120 32" fill="none">
+            <svg className="mt-3 w-full h-6" viewBox="0 0 120 32" fill="none">
               <path
                 d="M0 24 Q15 22 30 18 T60 12 T90 20 T105 6 T120 10"
-                stroke="#d4d4d8"
+                stroke="currentColor"
                 strokeWidth="2.2"
                 fill="none"
                 strokeLinecap="round"
-                className="chart-path"
+                className="chart-path text-pebble"
               />
-              <circle cx="105" cy="6" r="3" fill="#111" />
+              <circle cx="105" cy="6" r="3" fill="currentColor" className="text-indigo" />
             </svg>
           </div>
         </div>
       </div>
 
-      {/* Small Stats Box (Top Right) */}
-      <div className="absolute top-10 right-4 lg:right-10 bg-white border border-[#e5e5e5] rounded-[12px] shadow-sm p-4 w-[160px] animate-[slideIn_1s_ease-out]">
-        <div className="text-[10px] text-zinc-500 font-semibold uppercase">
-          {locale === "en" ? "Tasks completed" : "Tareas completadas"}
+      {/* Orbit 2 — top-right: Tasks completed */}
+      <div className="orbit-wrapper-2">
+        <div className="orbit-item-2">
+          <div className={`${orbitCardStyle} w-[130px] p-3`}>
+            <div className="text-[12px] text-slate uppercase tracking-wider font-semibold">
+              {locale === "en" ? "Tasks completed" : "Tareas completadas"}
+            </div>
+            <div className="text-[17px] font-bold text-snow mt-1 tracking-[-0.02em] leading-none">
+              1,248
+            </div>
+            <svg className="w-full h-5 mt-2" viewBox="0 0 100 20">
+              <path d="M0 15 L20 10 L40 18 L60 5 L80 12 L100 2" stroke="currentColor" strokeWidth="2" fill="none" className="chart-path text-pebble" />
+            </svg>
+          </div>
         </div>
-        <div className="text-[20px] font-bold text-[#111] mt-1 leading-none">
-          1,248
-        </div>
-        <svg className="w-full h-6 mt-2" viewBox="0 0 100 20">
-          <path d="M0 15 L20 10 L40 18 L60 5 L80 12 L100 2" stroke="#e4e4e7" strokeWidth="2" fill="none" />
-        </svg>
       </div>
 
       {/* Center Card */}
       <div className={centerCardStyle}>
-        <div className="grid grid-cols-[3fr_1fr_1fr] gap-2 pb-2 border-b border-[#ececee] text-[10px] text-zinc-400 uppercase font-semibold">
+        <div className="grid grid-cols-[3fr_1fr_1fr] gap-2 pb-2 border-b border-fog text-[12px] text-ash uppercase font-semibold">
           <div>{locale === "en" ? "Operation" : "Operación en ejecución"}</div>
           <div className="text-center">{locale === "en" ? "Status" : "Estado"}</div>
           <div className="text-right">{locale === "en" ? "Control" : "Control"}</div>
@@ -92,15 +96,15 @@ export function DashboardDemo() {
           {tasks.map((task, i) => {
             const isActive = isPlaying && activeStep === i;
             return (
-              <div key={i} className="grid grid-cols-[3fr_1fr_1fr] gap-2 items-center text-[13px] font-medium text-[#111]">
-                <div className={`transition-colors ${isActive ? "text-[#111]" : "text-zinc-500"}`}>
+              <div key={i} className="grid grid-cols-[3fr_1fr_1fr] gap-2 items-center text-[15px] font-medium text-snow">
+                  <div className={`transition-colors ${isActive ? "text-snow" : "text-slate"}`}>
                   {locale === "en" ? ["Sync leads", "Generate reports", "Send reminders", "Update CRM"][i] : task}
                 </div>
-                <div className="text-center text-[12px] text-zinc-500">
+                <div className="text-center text-[13px] text-slate">
                   {locale === "en" ? "Active" : "Activo"}
                 </div>
                 <div className="flex justify-end">
-                  <div className={`w-8 h-4 rounded-full flex items-center p-0.5 transition-colors ${isActive ? "bg-obsidian" : "bg-zinc-200"}`}>
+                  <div className={`w-8 h-4 rounded-full flex items-center p-0.5 transition-colors ${isActive ? "bg-indigo" : "bg-pebble"}`}>
                     <div className={`w-3 h-3 rounded-full bg-white transition-transform ${isActive ? "translate-x-4" : "translate-x-0"}`} />
                   </div>
                 </div>
@@ -113,7 +117,7 @@ export function DashboardDemo() {
       {/* Play/Pause Button */}
       <button 
         onClick={() => setIsPlaying(!isPlaying)}
-        className="absolute bottom-10 z-20 w-12 h-12 rounded-full bg-obsidian text-white flex items-center justify-center hover:scale-105 transition-transform shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+        className="absolute bottom-10 z-20 w-12 h-12 rounded-full bg-indigo text-white flex items-center justify-center hover:scale-105 transition-transform shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
       >
         {isPlaying ? (
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -130,14 +134,14 @@ export function DashboardDemo() {
       {/* Orbit 3 — middle-right: Ahorro de tiempo */}
       <div className="orbit-wrapper-3">
         <div className="orbit-item-3">
-          <div className={`${orbitCardStyle} w-[150px]`}>
-            <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">
+          <div className={`${orbitCardStyle} w-[120px] p-3`}>
+            <div className="text-[12px] text-slate uppercase tracking-wider font-semibold">
               {locale === "en" ? "Time Saved" : "Ahorro de tiempo"}
             </div>
-            <div className="text-[28px] font-bold text-[#111] mt-0.5 tracking-[-0.02em] leading-none">
-              320h
+            <div className="text-[25px] font-bold text-snow mt-0.5 tracking-[-0.02em] leading-none">
+               320h
             </div>
-            <div className="text-[10px] text-zinc-400 mt-1 font-medium">
+            <div className="text-[12px] text-ash mt-1 font-medium">
               {locale === "en" ? "this month" : "este mes"}
             </div>
           </div>
@@ -165,8 +169,9 @@ export function DashboardDemo() {
 
         .orbit-wrapper-1 {
           position: absolute;
-          width: 460px;
-          height: 460px;
+          left: calc(50% - 170px);
+          width: 340px;
+          height: 340px;
           border-radius: 9999px;
           pointer-events: none;
           display: flex;
@@ -176,7 +181,7 @@ export function DashboardDemo() {
         }
         .orbit-item-1 {
           position: absolute;
-          top: -30px;
+          top: -22px;
           pointer-events: auto;
           animation: orbit-1-ccw 60s linear infinite;
         }
@@ -189,10 +194,38 @@ export function DashboardDemo() {
           to { transform: rotate(-300deg); }
         }
 
+        .orbit-wrapper-2 {
+          position: absolute;
+          left: calc(50% - 220px);
+          width: 440px;
+          height: 440px;
+          border-radius: 9999px;
+          pointer-events: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          animation: orbit-2-cw 85s linear infinite;
+        }
+        .orbit-item-2 {
+          position: absolute;
+          top: -20px;
+          pointer-events: auto;
+          animation: orbit-2-ccw 85s linear infinite;
+        }
+        @keyframes orbit-2-cw {
+          from { transform: rotate(140deg); }
+          to { transform: rotate(500deg); }
+        }
+        @keyframes orbit-2-ccw {
+          from { transform: rotate(-140deg); }
+          to { transform: rotate(-500deg); }
+        }
+
         .orbit-wrapper-3 {
           position: absolute;
-          width: 520px;
-          height: 520px;
+          left: calc(50% - 190px);
+          width: 380px;
+          height: 380px;
           border-radius: 9999px;
           pointer-events: none;
           display: flex;
@@ -202,7 +235,7 @@ export function DashboardDemo() {
         }
         .orbit-item-3 {
           position: absolute;
-          top: -20px;
+          top: -14px;
           pointer-events: auto;
           animation: orbit-3-ccw 70s linear infinite;
         }

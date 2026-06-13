@@ -146,7 +146,7 @@ function Network() {
       {nodePositions.map((pos, i) => (
         <mesh key={i} position={[pos.x, pos.y, pos.z]}>
           <sphereGeometry args={[i < 4 ? 0.08 : 0.05, 8, 8]} />
-          <meshBasicMaterial color={i < 4 ? "#ff5a00" : "#09090b"} />
+          <meshBasicMaterial color={i < 4 ? "#7335B2" : "#000C14"} />
         </mesh>
       ))}
 
@@ -159,7 +159,7 @@ function Network() {
         </bufferGeometry>
         <pointsMaterial
           size={0.08}
-          color="#ff5a00"
+          color="#7335B2"
           transparent
           opacity={0.9}
           sizeAttenuation

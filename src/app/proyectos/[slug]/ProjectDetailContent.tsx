@@ -16,11 +16,11 @@ export function ProjectDetailContent({ project }: { project: Project }) {
 
   return (
     <div className="bg-snow min-h-screen pt-24 pb-32">
-      <div className="max-w-[1200px] mx-auto w-full px-6">
+      <div className="max-w-[1200px] px-22 mx-auto w-full">
         <Reveal>
           <Link
             href="/proyectos"
-            className="inline-flex items-center text-[14px] font-medium text-steel hover:text-obsidian mb-12 group transition-colors"
+            className="inline-flex items-center text-[16px] font-medium text-steel hover:text-snow mb-12 group transition-colors"
           >
             <svg
               width="20"
@@ -44,16 +44,16 @@ export function ProjectDetailContent({ project }: { project: Project }) {
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="border border-[#e5e5e5] rounded-[100px] px-3 py-1.5 text-[12px] font-medium text-zinc-600 bg-white"
+                className="border border-fog rounded-[100px] px-3 py-1.5 text-[14px] font-medium text-slate bg-ink"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <h1 className="text-[44px] md:text-[56px] font-bold text-obsidian leading-[1.1] mb-6 max-w-[800px]">
+          <h1 className="text-[51px] md:text-[64px] font-bold text-snow leading-[1.1] mb-6 max-w-[800px]">
             {title}
           </h1>
-          <p className="text-[18px] text-steel leading-[1.6] max-w-[600px] mb-16">
+          <p className="text-[21px] text-steel leading-[1.6] max-w-[600px] mb-16">
             {desc}
           </p>
         </Reveal>
@@ -62,10 +62,10 @@ export function ProjectDetailContent({ project }: { project: Project }) {
           <div className="flex flex-col gap-12">
             <Reveal y={20} delay={0.2}>
               <div>
-                <h2 className="text-[24px] font-bold text-obsidian mb-4">
+                <h2 className="text-[28px] font-bold text-snow mb-4">
                   {t("projects.detail.problem")}
                 </h2>
-                <p className="text-[16px] text-steel leading-relaxed">
+                <p className="text-[18px] text-steel leading-relaxed">
                   {problem}
                 </p>
               </div>
@@ -73,10 +73,10 @@ export function ProjectDetailContent({ project }: { project: Project }) {
 
             <Reveal y={20} delay={0.3}>
               <div>
-                <h2 className="text-[24px] font-bold text-obsidian mb-4">
+                <h2 className="text-[28px] font-bold text-snow mb-4">
                   {t("projects.detail.solution")}
                 </h2>
-                <p className="text-[16px] text-steel leading-relaxed">
+                <p className="text-[18px] text-steel leading-relaxed">
                   {solution}
                 </p>
               </div>
@@ -84,8 +84,8 @@ export function ProjectDetailContent({ project }: { project: Project }) {
           </div>
 
           <Reveal y={30} delay={0.4}>
-            <div className="bg-white border border-[#e5e5e5] rounded-[32px] p-4 lg:p-6 shadow-[0_12px_40px_rgba(0,0,0,0.04)]">
-              <div className="w-full aspect-[16/10] rounded-[24px] overflow-hidden bg-zinc-100 mb-8">
+            <div className="bg-ink border border-fog rounded-[32px] p-4 lg:p-6 shadow-[0_12px_40px_rgba(0,0,0,0.04)]">
+              <div className="w-full aspect-[16/10] rounded-[24px] overflow-hidden bg-fog mb-8">
                 <img
                   src={project.image}
                   alt={title}
@@ -94,18 +94,18 @@ export function ProjectDetailContent({ project }: { project: Project }) {
               </div>
 
               <div className="px-2 pb-4">
-                <h3 className="text-[18px] font-bold text-obsidian mb-6">
+                <h3 className="text-[21px] font-bold text-snow mb-6">
                   {t("projects.detail.results")}
                 </h3>
                 <ul className="flex flex-col gap-4">
                   {results.map((res, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-obsidian text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-6 h-6 rounded-full bg-indigo text-white flex items-center justify-center flex-shrink-0 mt-0.5">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       </div>
-                      <span className="text-[15px] text-steel font-medium leading-relaxed">
+                      <span className="text-[17px] text-steel font-medium leading-relaxed">
                         {res}
                       </span>
                     </li>

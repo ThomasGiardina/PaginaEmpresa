@@ -7,46 +7,46 @@ export function Footer() {
 
   return (
     <footer className="bg-obsidian pt-12 pb-8 border-t border-white/8">
-      <div className="max-w-[1500px] mx-auto w-full px-6">
+      <div className="max-w-[1500px] mx-auto w-full px-22">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2.5">
               <div className="w-7 h-7 rounded-[28px] bg-snow flex-shrink-0" />
-              <span className="text-[15px] font-semibold text-snow">
+              <span className="text-[17px] font-semibold text-snow">
                 Paginita
               </span>
             </div>
-            <p className="text-[13px] text-white/40 leading-relaxed max-w-[240px]">
+            <p className="text-[15px] text-white/40 leading-relaxed max-w-[240px]">
               {t("footer.tagline")}
             </p>
           </div>
 
           <div className="flex flex-col gap-3">
-            <h4 className="text-[11px] font-semibold text-white/30 uppercase tracking-wider">
+            <h4 className="text-[13px] font-semibold text-white/30 uppercase tracking-wider">
               {t("footer.navTitle")}
             </h4>
             <div className="flex flex-col gap-2">
-              <a href="#services" className="text-[13px] text-white/55 hover:text-snow transition-colors">
+              <a href="#services" className="text-[15px] text-white/55 hover:text-snow transition-colors">
                 {t("nav.services")}
               </a>
-              <a href="/proyectos" className="text-[13px] text-white/55 hover:text-snow transition-colors">
+              <a href="/proyectos" className="text-[15px] text-white/55 hover:text-snow transition-colors">
                 {t("nav.projects")}
               </a>
-              <a href="#about" className="text-[13px] text-white/55 hover:text-snow transition-colors">
+              <a href="#about" className="text-[15px] text-white/55 hover:text-snow transition-colors">
                 {t("nav.about")}
               </a>
-              <a href="#contact" className="text-[13px] text-white/55 hover:text-snow transition-colors">
+              <a href="#contact" className="text-[15px] text-white/55 hover:text-snow transition-colors">
                 {t("nav.contact")}
               </a>
             </div>
           </div>
 
           <div className="flex flex-col gap-3">
-            <h4 className="text-[11px] font-semibold text-white/30 uppercase tracking-wider">
+            <h4 className="text-[13px] font-semibold text-white/30 uppercase tracking-wider">
               {t("footer.contactTitle")}
             </h4>
             <div className="flex flex-col gap-2">
-              <span className="text-[13px] text-white/55">
+              <span className="text-[15px] text-white/55">
                 {t("contact.email")}
               </span>
               <div className="flex gap-2 mt-1">
@@ -86,7 +86,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/8">
-          <p className="text-[12px] text-white/25 text-center">
+          <p className="text-[14px] text-white/25 text-center">
             {t("footer.copyright")}
           </p>
         </div>

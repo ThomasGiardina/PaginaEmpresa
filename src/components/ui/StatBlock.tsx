@@ -6,10 +6,10 @@ interface StatBlockProps {
 export function StatBlock({ value, label }: StatBlockProps) {
   return (
     <div className="flex flex-col items-center text-center gap-1.5">
-      <span className="text-[48px] font-bold text-obsidian leading-[1]">
+      <span className="text-[55px] font-bold text-snow leading-[1]">
         {value}
       </span>
-      <p className="text-[13px] font-normal text-steel leading-snug">{label}</p>
+      <p className="text-[15px] font-normal text-steel leading-snug">{label}</p>
     </div>
   );
 }

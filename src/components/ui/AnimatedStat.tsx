@@ -58,17 +58,17 @@ export function AnimatedStat({ value, label, icon }: AnimatedStatProps) {
     <div ref={ref} className="flex flex-col items-center text-center gap-2">
       {icon && (
         <div className="w-12 h-12 flex items-center justify-center mb-1">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-ash">
             <path d={icon} />
           </svg>
         </div>
       )}
-      <span className="text-[44px] font-bold text-obsidian leading-[1] flex items-baseline">
-        <span className="text-[32px] text-zinc-400 font-semibold mr-0.5">{prefix}</span>
-        {displayed}
-        <span className="text-[32px] text-zinc-400 font-semibold ml-0.5">{suffix}</span>
-      </span>
-      <p className="text-[14px] font-medium text-steel leading-snug mt-1">{label}</p>
+        <span className="text-[51px] font-bold text-snow leading-[1] flex items-baseline">
+          <span className="text-[37px] text-ash font-semibold mr-0.5">{prefix}</span>
+          {displayed}
+          <span className="text-[37px] text-ash font-semibold ml-0.5">{suffix}</span>
+        </span>
+      <p className="text-[16px] font-medium text-slate leading-snug mt-1">{label}</p>
     </div>
   );
 }

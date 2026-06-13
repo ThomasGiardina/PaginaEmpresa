@@ -59,20 +59,20 @@ export function Nav() {
 
   return (
     <nav
-      className={`z-50 bg-white/70 backdrop-blur-xl border-b border-[#e5e5e5]/50 h-14 flex items-center transition-all duration-300 shadow-sm ${
+      className={`z-50 bg-obsidian/80 backdrop-blur-xl border-b border-white/10 h-14 flex items-center transition-all duration-300 shadow-sm ${
         isLanding
           ? "fixed top-0 left-0 right-0 w-full translate-y-0 opacity-100"
           : "sticky top-0 translate-y-0 opacity-100"
       }`}
     >
-      <div className="max-w-[1500px] mx-auto w-full px-6 flex items-center justify-between">
+      <div className="max-w-[1500px] mx-auto w-full px-22 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-obsidian flex items-center justify-center flex-shrink-0 text-white">
+          <div className="w-7 h-7 rounded-lg bg-snow/10 flex items-center justify-center flex-shrink-0 text-white">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.5 2.5L13.5 13.5M13.5 2.5L2.5 13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
             </svg>
           </div>
-          <span className="text-[15px] font-bold tracking-tight text-obsidian uppercase">
+          <span className="text-[17px] font-bold tracking-tight text-snow uppercase">
             Paginita
           </span>
         </Link>
@@ -96,8 +96,8 @@ export function Nav() {
                 href={link.href}
                 className={
                   isActive
-                    ? "text-[14px] font-medium bg-obsidian text-snow rounded-[100px] px-3 py-1"
-                    : "text-[14px] font-medium text-ink hover:text-obsidian transition-colors"
+                    ? "text-[16px] font-medium bg-snow/10 text-snow rounded-[100px] px-3 py-1"
+                    : "text-[16px] font-medium text-slate hover:text-snow transition-colors"
                 }
               >
                 {t(link.key)}
@@ -109,13 +109,13 @@ export function Nav() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setLocale(locale === "en" ? "es" : "en")}
-            className="text-[13px] font-medium text-graphite hover:text-obsidian transition-colors px-2 cursor-pointer"
+            className="text-[15px] font-medium text-slate hover:text-snow transition-colors px-2 cursor-pointer"
           >
             {locale === "en" ? "ES" : "EN"}
           </button>
           <Link
             href="/#contact"
-            className="hidden sm:inline-flex items-center justify-center bg-[#111] text-white rounded-full px-5 py-2.5 text-[14px] font-medium leading-none hover:opacity-90 transition-opacity gap-2"
+            className="hidden sm:inline-flex items-center justify-center bg-indigo text-white rounded-full px-5 py-2.5 text-[16px] font-medium leading-none hover:opacity-90 transition-opacity gap-2"
           >
             {t("nav.talk")}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
@@ -128,22 +128,22 @@ export function Nav() {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
           >
-            <span className={`block w-5 h-0.5 bg-obsidian transition-transform ${mobileOpen ? "rotate-45 translate-y-1.5" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-obsidian transition-opacity ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-obsidian transition-transform ${mobileOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-snow transition-transform ${mobileOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-snow transition-opacity ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-snow transition-transform ${mobileOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
           </button>
         </div>
       </div>
 
       {mobileOpen && (
-        <div className="absolute top-14 left-0 right-0 bg-snow border-b border-fog md:hidden">
+        <div className="absolute top-14 left-0 right-0 bg-obsidian border-b border-white/10 md:hidden">
           <div className="flex flex-col px-6 py-4 gap-3">
             {links.map((link) => (
               <Link
                 key={link.key}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-[14px] font-medium text-ink hover:text-obsidian py-1.5"
+                className="text-[16px] font-medium text-slate hover:text-snow py-1.5"
               >
                 {t(link.key)}
               </Link>

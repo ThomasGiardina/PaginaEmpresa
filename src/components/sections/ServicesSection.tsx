@@ -10,15 +10,15 @@ export function ServicesSection() {
 
   return (
     <section id="services" className="bg-mist min-h-dvh flex items-center py-20 scroll-mt-14">
-      <div className="max-w-[1500px] mx-auto w-full px-6">
+      <div className="max-w-[1500px] px-22 mx-auto w-full">
         <div className="flex flex-col gap-4 mb-10">
           <Reveal>
-            <span className="inline-block self-start text-[11px] font-medium text-ash tracking-[0.08em] uppercase border border-zinc-200 bg-white rounded-full px-[14px] py-[4px]">
+            <span className="inline-block self-start text-[13px] font-medium text-ash tracking-[0.08em] uppercase border border-fog bg-ink rounded-full px-[14px] py-[4px]">
               {t("services.badge")}
             </span>
           </Reveal>
           <Reveal y={24} delay={0.1}>
-            <h2 className="text-[36px] font-bold text-obsidian leading-[1.2]">
+            <h2 className="text-[41px] font-bold text-snow leading-[1.2]">
               {t("services.title")}
             </h2>
           </Reveal>
