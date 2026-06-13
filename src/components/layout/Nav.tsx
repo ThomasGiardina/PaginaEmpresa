@@ -8,9 +8,9 @@ import Link from "next/link";
 
 const links = [
   { key: "nav.services", href: "/#services" },
-  { key: "nav.projects", href: "/proyectos" },
   { key: "nav.about", href: "/#about" },
   { key: "nav.contact", href: "/#contact" },
+  { key: "nav.projects", href: "/proyectos" },
 ];
 
 export function Nav() {
