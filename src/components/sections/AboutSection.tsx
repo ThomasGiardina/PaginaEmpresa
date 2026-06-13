@@ -39,14 +39,14 @@ export function AboutSection() {
           </div>
 
           <Reveal y={32} delay={0.25} className="flex justify-center md:justify-end">
-            <div className="w-full max-w-[500px] aspect-[4/3] bg-ink border border-fog rounded-[36px] flex items-center justify-center p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] relative overflow-hidden">
+            <div className="w-full max-w-[500px] aspect-[4/3] bg-indigo/5 border border-indigo/20 rounded-[36px] flex items-center justify-center p-8 shadow-[0_8px_30px_rgba(115,53,178,0.15)] hover:border-indigo/40 transition-colors duration-300 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
               <div className="flex items-end justify-center gap-2 z-10 relative mt-6">
                 <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform translate-y-2 -rotate-6 text-pebble">
                   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                   <circle cx="9" cy="7" r="4" />
                 </svg>
-                <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="z-10 bg-ink rounded-full text-ash">
+                <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="z-10 bg-indigo/10 rounded-full text-indigo">
                   <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
                   <circle cx="14" cy="7" r="4" />
                 </svg>

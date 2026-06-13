@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useLocale } from "@/i18n/context";
 import { DashboardDemo } from "@/components/ui/DashboardDemo";
 import Link from "next/link";
@@ -11,26 +11,38 @@ const verbs: Record<string, string[]> = {
 };
 
 export function Hero() {
-  const { t, locale, setLocale } = useLocale();
+  const { t, locale } = useLocale();
   const [index, setIndex] = useState(0);
   const [fading, setFading] = useState(false);
 
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    setIndex(0);
-  }, [locale]);
+    let timeout1: NodeJS.Timeout;
+    let timeout2: NodeJS.Timeout;
+    let isMounted = true;
 
-  useEffect(() => {
-    const currentVerbs = verbs[locale] || verbs["en"];
-    const interval = setInterval(() => {
+    const cycleWord = () => {
+      if (!isMounted) return;
       setFading(true);
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % currentVerbs.length);
+      
+      timeout1 = setTimeout(() => {
+        if (!isMounted) return;
+        setIndex((prev) => {
+          const currentVerbs = verbs[locale] || verbs["en"];
+          return (prev + 1) % currentVerbs.length;
+        });
         setFading(false);
+        
+        timeout2 = setTimeout(cycleWord, 2800);
       }, 200);
-    }, 3000);
-    return () => clearInterval(interval);
+    };
+
+    timeout2 = setTimeout(cycleWord, 3000);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
   }, [locale]);
 
   return (

@@ -3,20 +3,17 @@ import type { Project } from "@/data/projects";
 interface ProjectTileProps {
   project: Project;
   height?: string;
-  decorative?: boolean;
 }
 
 export function ProjectTile({
   project,
   height = "auto",
-  decorative = false,
 }: ProjectTileProps) {
-  // Use a pink wash for the decorative card (e.g., Plataforma de Pagos in the mockup)
-  const bgClass = decorative ? "bg-orchid-flash/5 border-orchid-flash/20" : "bg-ink border-fog";
+  const bgClass = "bg-indigo/5 border-indigo/20 hover:border-indigo/40 hover:bg-indigo/10 hover:shadow-[0_8px_30px_rgba(115,53,178,0.15)] transition-all duration-300";
 
   return (
     <div
-      className={`border rounded-[32px] p-3 flex flex-col group cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 ${bgClass}`}
+      className={`border rounded-[32px] p-3 flex flex-col group cursor-pointer h-full ${bgClass}`}
       style={height !== "auto" ? { minHeight: height } : undefined}
     >
       <div className="w-full aspect-[4/3] rounded-[24px] overflow-hidden bg-mist mb-5 relative">
@@ -32,7 +29,7 @@ export function ProjectTile({
           {project.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="border border-fog rounded-[100px] px-2.5 py-1 text-[13px] font-medium text-slate bg-ink"
+              className="border border-indigo/20 rounded-[100px] px-2.5 py-1 text-[13px] font-medium text-snow/80 bg-indigo/10"
             >
               {tag}
             </span>

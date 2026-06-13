@@ -49,7 +49,7 @@ export function ProblemPanel() {
             {cards.map((card, i) => (
               <div
                 key={i}
-                className="bg-ink rounded-[24px] border border-[#27272a] p-8 flex flex-col h-full hover:bg-[#202024] transition-colors duration-300"
+                className="bg-indigo/5 rounded-[24px] border border-indigo/20 p-8 flex flex-col h-full hover:bg-indigo/10 hover:border-indigo/40 hover:shadow-[0_8px_30px_rgba(115,53,178,0.15)] transition-all duration-300"
               >
                 <div className="w-[48px] h-[48px] rounded-[14px] bg-[#27272a] flex items-center justify-center mb-6 flex-shrink-0">
                   <svg

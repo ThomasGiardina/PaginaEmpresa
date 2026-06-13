@@ -34,11 +34,8 @@ export function PortfolioPreview() {
         <Reveal y={32} delay={0.2} className="w-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
             {featured.map((project, i) => (
-              <Link href={`/proyectos/${project.slug}`} key={project.id} className="block">
-                <ProjectTile
-                  project={project}
-                  decorative={i === 3}
-                />
+              <Link href={`/proyectos/${project.slug}`} key={project.id} className="block h-full">
+                <ProjectTile project={project} />
               </Link>
             ))}
           </div>
