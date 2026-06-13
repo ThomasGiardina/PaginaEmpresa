@@ -138,17 +138,6 @@ export function ServiceCard({ service, index, featured }: ServiceCardProps) {
             style={{ transform: "translateZ(15px)" }}>
             {desc}
           </p>
-          <div className="flex flex-wrap gap-2 mt-5 mb-4"
-            style={{ transform: "translateZ(10px)" }}>
-            {service.tags.map((tag) => (
-              <span
-                key={tag}
-                className="border border-indigo/20 rounded-[100px] px-3 py-1 text-[13px] font-medium text-snow/70 bg-indigo/[0.06]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
           <WorkflowFlow />
         </TiltWrapper>
       </motion.article>
@@ -180,17 +169,6 @@ export function ServiceCard({ service, index, featured }: ServiceCardProps) {
           style={{ transform: "translateZ(15px)" }}>
           {desc}
         </p>
-        <div className="flex flex-wrap gap-2 mt-5"
-          style={{ transform: "translateZ(10px)" }}>
-          {service.tags.map((tag) => (
-            <span
-              key={tag}
-              className="border border-white/[0.08] rounded-[100px] px-3 py-1 text-[13px] font-medium text-snow/60 bg-white/[0.03]"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
       </TiltWrapper>
     </motion.article>
   );
