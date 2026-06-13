@@ -1,7 +1,9 @@
 "use client";
 
+import { motion } from "motion/react";
 import { useLocale } from "@/i18n/context";
 import { Reveal } from "@/components/Reveal";
+import { transition } from "@/lib/easing";
 
 const cards = [
   {
@@ -23,58 +25,89 @@ const cards = [
     icon: "M4 20h16M6 16v-4M10 16V8M14 16V6M18 16v-2",
     titleKey: "problems.card4Title",
     descKey: "problems.card4Desc",
-  }
+  },
 ];
+
+function ProblemCard({
+  icon,
+  title,
+  desc,
+  index,
+}: {
+  icon: string;
+  title: string;
+  desc: string;
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ ...transition(index * 0.08), duration: 0.5 }}
+      whileHover={{ y: -4, scale: 1.01 }}
+      className="group relative bg-white/[0.02] border border-white/[0.06] rounded-[24px] p-8 flex flex-col h-full overflow-hidden"
+    >
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-indigo/[0.04] to-transparent"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3 + index * 0.08, duration: 0.6 }}
+      />
+      <div className="w-[48px] h-[48px] rounded-[14px] bg-white/[0.04] border border-white/[0.08] flex items-center justify-center mb-6 flex-shrink-0 relative z-10">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="rgba(255,255,255,0.6)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d={icon} />
+        </svg>
+      </div>
+      <h3 className="text-[21px] font-bold text-snow mb-3 leading-snug relative z-10">
+        {title}
+      </h3>
+      <p className="text-[16px] text-slate/70 leading-[1.6] flex-1 relative z-10">
+        {desc}
+      </p>
+    </motion.div>
+  );
+}
 
 export function ProblemPanel() {
   const { t } = useLocale();
 
   return (
-    <section id="problems" className="bg-obsidian min-h-dvh flex items-center py-24 border-y border-ink scroll-mt-14">
+    <section id="problems" className="bg-obsidian min-h-dvh flex items-center py-24 border-y border-white/[0.04] scroll-mt-14">
       <div className="max-w-[1500px] px-22 mx-auto w-full flex flex-col items-center">
         <Reveal>
-          <span className="inline-block text-[13px] font-medium text-ash tracking-[0.08em] uppercase bg-ink rounded-full px-[14px] py-[4px] mb-6">
+          <span className="inline-block text-[13px] font-medium text-ash tracking-[0.08em] uppercase bg-white/[0.03] border border-white/[0.08] rounded-full px-[14px] py-[4px] mb-6">
             {t("problems.badge")}
           </span>
         </Reveal>
         <Reveal y={24} delay={0.1}>
           <h2 className="text-[41px] md:text-[48px] font-bold text-white text-center leading-[1.2] max-w-[800px] mb-12">
             {t("problems.titleWhite")}{" "}
-            <span className="text-slate">{t("problems.titleGray")}</span>
+            <span className="text-slate/60">{t("problems.titleGray")}</span>
           </h2>
         </Reveal>
-        
-        <Reveal y={32} delay={0.2} className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 w-full">
-            {cards.map((card, i) => (
-              <div
-                key={i}
-                className="bg-indigo/5 rounded-[24px] border border-indigo/20 p-8 flex flex-col h-full hover:bg-indigo/10 hover:border-indigo/40 hover:shadow-[0_8px_30px_rgba(115,53,178,0.15)] transition-all duration-300"
-              >
-                <div className="w-[48px] h-[48px] rounded-[14px] bg-[#27272a] flex items-center justify-center mb-6 flex-shrink-0">
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.7)"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d={card.icon} />
-                  </svg>
-                </div>
-                <h3 className="text-[21px] font-bold text-white mb-3 leading-snug">
-                  {t(card.titleKey)}
-                </h3>
-                <p className="text-[17px] text-slate leading-[1.6] flex-1">
-                  {t(card.descKey)}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 w-full">
+          {cards.map((card, i) => (
+            <ProblemCard
+              key={i}
+              icon={card.icon}
+              title={t(card.titleKey)}
+              desc={t(card.descKey)}
+              index={i}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

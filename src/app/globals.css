@@ -1,15 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-ink-black: #13111C;
-  --color-dark-amethyst: #181622;
-  --color-slate-grey: #A1A0AB;
-  --color-platinum: #1E1B2E;
-  --color-indigo: #7335B2;
-
   --color-obsidian: #13111C;
   --color-ink: #181622;
+  --color-platinum: #1E1B2E;
   --color-graphite: #2A2740;
   --color-slate: #A1A0AB;
   --color-steel: #A1A0AB;
@@ -18,17 +12,16 @@
   --color-fog: #1E1B2E;
   --color-mist: #181622;
   --color-snow: #ffffff;
+  --color-indigo: #7335B2;
   --color-ember: #7335B2;
   --color-orchid-flash: #fe45e2;
   --color-cream: #f5f5f3;
   --color-warm-gray: #eeecea;
   --color-silver: #e0e0e0;
 
-  /* Typography */
   --font-cosmica: "Inter", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Shadows */
   --shadow-subtle: rgba(255, 255, 255, 0.5) 0px 0.5px 0px 0px inset,
     rgba(117, 123, 133, 0.4) 0px 9px 14px -5px inset,
     rgb(44, 46, 52) 0px 0px 0px 1.5px,
@@ -39,7 +32,6 @@
   --shadow-subtle-5: rgb(228, 228, 231) 0px -1px 0px 0px;
   --shadow-md: rgba(0, 0, 0, 0.04) 0px 4px 12px 0px;
 
-  /* Border Radius */
   --radius-hero: 48px;
   --radius-pill: 10000px;
   --radius-cards: 36px;
@@ -50,17 +42,29 @@
   --radius-buttons-pill: 36px;
   --radius-buttons-rect: 14px;
 
-  /* Animations */
   --animate-scroll-left: scroll-left 30s linear infinite;
+  --animate-grid-fade: grid-fade 4s ease-in-out infinite;
 }
 
 @keyframes scroll-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-16.666%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-16.666%); }
+}
+
+@keyframes grid-fade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.15; }
+  50% { transform: scale(1.08); opacity: 0.25; }
 }
 
 @layer base {
@@ -72,5 +76,64 @@
     background-color: var(--color-obsidian);
     color: var(--color-snow);
     font-family: var(--font-cosmica);
+  }
+
+  ::selection {
+    background-color: var(--color-indigo);
+    color: var(--color-snow);
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .bg-grid-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .glow-indigo {
+    box-shadow: 0 0 24px rgba(115, 53, 178, 0.15),
+                0 0 48px rgba(115, 53, 178, 0.08);
+  }
+
+  .glow-indigo-sm {
+    box-shadow: 0 0 12px rgba(115, 53, 178, 0.12);
+  }
+
+  .animate-gradient {
+    animation: gradient var(--bg-size, 300%) 0s ease infinite;
+  }
+
+  .animate-breathe {
+    animation: breathe 6s ease-in-out infinite;
+  }
+
+  .glow-line {
+    filter: drop-shadow(0 0 6px rgba(115, 53, 178, 0.4))
+            drop-shadow(0 0 12px rgba(115, 53, 178, 0.2));
+  }
+
+  .border-glow {
+    position: relative;
+  }
+
+  .border-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(115, 53, 178, 0.4), transparent 40%, transparent 60%, rgba(115, 53, 178, 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
 }
